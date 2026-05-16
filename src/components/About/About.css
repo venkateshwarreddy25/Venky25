@@ -1,0 +1,251 @@
+.about-section {
+  padding-top: 0; /* Marquee is at the very top */
+}
+
+/* Marquee */
+.marquee-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-top: 0.5px solid rgba(0, 245, 255, 0.1);
+  border-bottom: 0.5px solid rgba(0, 245, 255, 0.1);
+  background: var(--bg-dark-1);
+  overflow: hidden;
+  display: flex;
+  padding: 8px 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: 200%;
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-content {
+  width: 50%;
+  white-space: nowrap;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgba(0, 245, 255, 0.4);
+}
+
+/* Layout */
+.about-container {
+  display: flex;
+  gap: 80px;
+  margin-top: 100px;
+}
+
+.about-left {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-right {
+  width: 60%;
+}
+
+.text-left {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+/* Avatar Orbits */
+.avatar-system {
+  position: relative;
+  width: 440px;
+  height: 440px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.avatar-circle {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  background: #050d1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 64px;
+  color: var(--accent-cyan);
+  z-index: 10;
+}
+
+.orbit-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 0.5px dashed rgba(0, 245, 255, 0.15);
+}
+
+.orbit-dot {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-cyan);
+  border-radius: 50%;
+}
+
+.ring-1 { width: 320px; height: 320px; animation: orbitRing 20s linear infinite; }
+.ring-2 { width: 380px; height: 380px; animation: orbitRing 30s linear infinite; }
+.ring-3 { width: 440px; height: 440px; animation: orbitRing 45s linear infinite; }
+
+/* Skill Bars */
+.skill-bars {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.skill-label {
+  width: 80px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.skill-track {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 99px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  background: var(--accent-cyan);
+  transition: width 1.2s var(--ease-out-cubic);
+}
+
+.skill-percent {
+  width: 30px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-cyan);
+  text-align: right;
+}
+
+/* Bio */
+.bio-paragraph {
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.bio-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s var(--ease-out-cubic), transform 0.4s var(--ease-out-cubic);
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+.bio-word.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: rgba(0, 245, 255, 0.03);
+  border: 0.5px solid rgba(0, 245, 255, 0.12);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 40px;
+  color: var(--accent-cyan);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Learning */
+.learning-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.learning-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.learning-badges {
+  display: flex;
+  gap: 12px;
+}
+
+.learning-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-green);
+  border-radius: 50%;
+  animation: pulseDot 1.5s ease-in-out infinite;
+}
+
+@media (max-width: 1024px) {
+  .about-container { flex-direction: column; gap: 60px; }
+  .about-left, .about-right { width: 100%; }
+  .avatar-system { width: 300px; height: 300px; }
+  .avatar-circle { width: 200px; height: 200px; font-size: 48px; }
+  .ring-1 { width: 240px; height: 240px; }
+  .ring-2 { width: 270px; height: 270px; }
+  .ring-3 { width: 300px; height: 300px; }
+}

@@ -1,0 +1,162 @@
+.skills-sci-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+
+/* Zone A: Orbital System */
+.skills-zone-a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 650px;
+  align-items: center;
+  perspective: 1200px;
+}
+
+.orbit-system {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orbit-ring-3d {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 245, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+.ring-outer-3d { width: 600px; height: 600px; animation: orbit 30s linear infinite; }
+.ring-middle-3d { width: 420px; height: 420px; animation: orbit 20s linear infinite; }
+.ring-inner-3d { width: 240px; height: 240px; animation: orbit 12s linear infinite; }
+
+.orbit-node {
+  position: absolute;
+  top: 50%; left: 50%;
+  margin-top: -12px; margin-left: -40px;
+}
+
+.spin-outer { animation: orbitReverse 30s linear infinite; }
+.spin-middle { animation: orbitReverse 20s linear infinite; }
+.spin-inner { animation: orbitReverse 12s linear infinite; }
+
+.node-pill {
+  background: rgba(0, 245, 255, 0.06);
+  border: 0.5px solid rgba(0, 245, 255, 0.25);
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  border-radius: 999px;
+  padding: 4px 14px;
+  white-space: nowrap;
+  transition: transform 0.3s var(--ease-out-cubic), box-shadow 0.3s var(--ease-out-cubic);
+}
+
+.node-pill:hover {
+  transform: scale(1.35);
+  box-shadow: 0 0 16px rgba(0, 245, 255, 0.5);
+  z-index: 100;
+}
+
+.core-reactor {
+  position: absolute;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--accent-cyan);
+  letter-spacing: 0.4em;
+  font-size: 12px;
+  text-shadow: 0 0 12px rgba(0, 245, 255, 0.5);
+}
+
+/* Zone B: Hex Grid */
+.skills-zone-b {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+}
+
+.hex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  /* Trick to create offset rows in flexbox honeycomb */
+  padding-left: 25px;
+}
+
+.hex-cell {
+  position: relative;
+  width: 100px;
+  height: 115px;
+  background: rgba(0, 245, 255, 0.15); /* Simulated border via larger hex behind */
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -15px; /* Pull them together horizontally */
+  margin-bottom: -30px; /* Pull them together vertically */
+  
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.5s var(--ease-out-cubic), transform 0.5s var(--ease-out-cubic);
+}
+
+.hex-cell:nth-child(even) {
+  margin-top: 57px; /* Offset every second item to create honeycomb */
+}
+
+.hex-cell.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hex-inner {
+  width: 98px;
+  height: 113px;
+  background: rgba(0, 245, 255, 0.04);
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.hex-cell:hover .hex-inner {
+  background: rgba(0, 245, 255, 0.12);
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.hex-icon {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+.hex-name {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .skills-zone-a { height: auto; perspective: none; }
+  .orbit-system { width: 100%; height: auto; display: flex; flex-wrap: wrap; gap: 10px; padding: 20px; }
+  .orbit-ring-3d { position: static; width: auto; height: auto; animation: none; border: none; flex-wrap: wrap; gap: 10px;}
+  .orbit-node { position: static; transform: none !important; margin: 0; }
+  .node-pill { animation: none; }
+  .core-reactor { display: none; }
+}

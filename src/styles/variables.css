@@ -1,0 +1,32 @@
+/* ============================================
+   DESIGN TOKENS - AAA Sci-Fi
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=JetBrains+Mono:wght@300;400&display=swap');
+
+:root {
+  /* Colors */
+  --bg-dark-1: #000005;
+  --bg-dark-2: #020810;
+  
+  --accent-cyan: #00f5ff;
+  --accent-green: #22c55e;
+  --accent-purple: #a855f7;
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+
+  --text-main: #e8eaf2;
+  --text-muted: #8892a4;
+  --text-white: #ffffff;
+  
+  /* Fonts */
+  --font-heading: 'Syne', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: system-ui, -apple-system, sans-serif;
+
+  /* State */
+  --scroll-progress: 0%;
+  
+  /* Transitions */
+  --ease-out-cubic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-cubic: cubic-bezier(0.23, 1, 0.32, 1);
+}

@@ -1,0 +1,108 @@
+.preloader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.preloader-text-wrapper {
+  display: flex;
+  position: relative;
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 120px;
+  color: #fff;
+  letter-spacing: 0.3em;
+}
+
+/* Converge Phase */
+.letter {
+  display: inline-block;
+  animation-duration: 1.2s;
+  animation-timing-function: var(--ease-out-cubic);
+  animation-fill-mode: forwards;
+}
+
+.letter-m { animation-name: letterM; }
+.letter-v { animation-name: letterV; }
+.letter-r { animation-name: letterR; }
+
+/* Glitch Phase */
+.preloader-text-wrapper.glitch {
+  animation: glitchCut 0.3s steps(2, end) infinite;
+  position: relative;
+}
+
+.preloader-text-wrapper.glitch::before,
+.preloader-text-wrapper.glitch::after {
+  content: 'M V R';
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+}
+
+.preloader-text-wrapper.glitch::before {
+  color: #ff003c;
+  animation: rgbSplit 0.1s infinite;
+}
+
+.preloader-text-wrapper.glitch::after {
+  color: var(--accent-cyan);
+  animation: rgbSplit 0.15s infinite reverse;
+}
+
+/* Shatter Phase */
+.shatter-container {
+  position: relative;
+  width: 400px;
+  height: 200px;
+}
+
+.fragment {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 120px;
+  color: #fff;
+  letter-spacing: 0.3em;
+  white-space: nowrap;
+  opacity: 1;
+  animation: fragmentFly 1s var(--ease-out-cubic) forwards;
+}
+
+/* 12 fragments using clip-path polygons */
+.fragment-0 { clip-path: polygon(0 0, 50% 0, 25% 50%); --x: -200px; --y: -200px; --r: -45deg; }
+.fragment-1 { clip-path: polygon(50% 0, 100% 0, 75% 50%); --x: 200px; --y: -150px; --r: 30deg; }
+.fragment-2 { clip-path: polygon(25% 50%, 75% 50%, 50% 100%); --x: 0; --y: 300px; --r: 90deg; }
+.fragment-3 { clip-path: polygon(0 0, 25% 50%, 0 100%); --x: -300px; --y: 0; --r: -90deg; }
+.fragment-4 { clip-path: polygon(100% 0, 100% 100%, 75% 50%); --x: 300px; --y: 100px; --r: 60deg; }
+.fragment-5 { clip-path: polygon(0 100%, 25% 50%, 50% 100%); --x: -150px; --y: 200px; --r: -30deg; }
+.fragment-6 { clip-path: polygon(50% 100%, 75% 50%, 100% 100%); --x: 150px; --y: 250px; --r: 45deg; }
+.fragment-7 { clip-path: polygon(25% 25%, 50% 0, 75% 25%); --x: 100px; --y: -250px; --r: 15deg; }
+.fragment-8 { clip-path: polygon(10% 10%, 30% 0, 20% 30%); --x: -250px; --y: -100px; --r: -60deg; }
+.fragment-9 { clip-path: polygon(70% 10%, 90% 0, 80% 30%); --x: 250px; --y: -50px; --r: 75deg; }
+.fragment-10 { clip-path: polygon(10% 90%, 20% 70%, 30% 100%); --x: -100px; --y: 150px; --r: -15deg; }
+.fragment-11 { clip-path: polygon(70% 100%, 80% 70%, 90% 90%); --x: 200px; --y: 200px; --r: 120deg; }
+
+@keyframes fragmentFly {
+  to {
+    transform: translateX(calc(-50% + var(--x))) translateY(var(--y)) rotate(var(--r));
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .preloader-text-wrapper, .fragment { font-size: 60px; }
+  .shatter-container { width: 200px; }
+}

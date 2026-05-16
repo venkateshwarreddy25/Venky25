@@ -1,0 +1,82 @@
+@import './variables.css';
+@import './animations.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-dark-1);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  cursor: none; /* Custom cursor */
+}
+
+::selection {
+  background: var(--accent-cyan);
+  color: #000;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-white);
+  font-weight: 500;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: none; /* Custom cursor manages this */
+}
+
+button {
+  cursor: none;
+  font-family: inherit;
+}
+
+section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 120px 24px;
+}
+
+/* Background striping alternating */
+section:nth-child(odd) {
+  background-color: var(--bg-dark-1);
+}
+
+section:nth-child(even) {
+  background-color: var(--bg-dark-2);
+}
+
+.container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+::-webkit-scrollbar { width: 0px; } /* Hidden for seamless experience */
+
+@media (max-width: 768px) {
+  body, a, button {
+    cursor: auto; /* Revert on mobile */
+  }
+  section {
+    padding: 60px 24px;
+  }
+  * {
+    transform-style: flat !important;
+  }
+}

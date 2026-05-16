@@ -1,0 +1,117 @@
+.timeline-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.timeline-center-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 100%;
+  background: rgba(0, 245, 255, 0.2);
+}
+
+.timeline-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40px;
+  position: relative;
+  opacity: 0;
+}
+
+.row-left {
+  justify-content: flex-start;
+  transform: translateX(-50px);
+  transition: opacity 0.6s var(--ease-out-cubic), transform 0.6s var(--ease-out-cubic);
+}
+
+.row-right {
+  justify-content: flex-end;
+  transform: translateX(50px);
+  transition: opacity 0.6s var(--ease-out-cubic), transform 0.6s var(--ease-out-cubic);
+}
+
+.timeline-row.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.timeline-card {
+  width: calc(50% - 40px);
+  background: rgba(0, 245, 255, 0.03);
+  border: 0.5px solid rgba(0, 245, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px 24px;
+  position: relative;
+}
+
+.row-left .timeline-card {
+  text-align: right;
+}
+
+.row-right .timeline-card {
+  text-align: left;
+}
+
+.timeline-year {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  margin-bottom: 8px;
+}
+
+.timeline-card-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-white);
+  margin-bottom: 8px;
+}
+
+.timeline-card-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.timeline-connector {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-dark-1);
+  border: 2px solid var(--accent-cyan);
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .timeline-center-line {
+    left: 20px;
+  }
+  .timeline-connector {
+    left: 20px;
+  }
+  .timeline-row {
+    justify-content: flex-end;
+  }
+  .row-left .timeline-card, .row-right .timeline-card {
+    width: calc(100% - 50px);
+    text-align: left;
+  }
+  .row-left { transform: translateX(50px); }
+}

@@ -1,0 +1,217 @@
+/* ============================================
+   FOLDER CARD — 3D depth illusion
+   ============================================ */
+
+.folder-card {
+  width: var(--folder-width);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  /* Per-card hue passed via style prop */
+  --folder-color: var(--folder-blue);
+  --tab-color: color-mix(in srgb, var(--folder-color) 80%, #000);
+  --edge-color: color-mix(in srgb, var(--folder-color) 60%, #000);
+
+  transition:
+    transform var(--transition-speed) var(--ease-out-quint),
+    filter var(--transition-speed) var(--ease-out-quint);
+
+  transform: perspective(900px) rotateX(-4deg) translateZ(0px);
+  will-change: transform;
+}
+
+/* ── Hover lift ── */
+.folder-card:hover {
+  transform: perspective(900px) rotateX(-4deg) translateY(-10px) translateZ(20px);
+  filter: brightness(1.08);
+  z-index: 10;
+}
+
+/* ── Tab ── */
+.folder-tab {
+  width: var(--tab-width);
+  height: var(--tab-height);
+  background: var(--tab-color);
+  border-radius: 8px 14px 0 0;
+  position: relative;
+  margin-left: 14px;
+  /* Slight sheen on top */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* Curved join between tab and body */
+.folder-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -10px;
+  width: 12px;
+  height: 12px;
+  background: transparent;
+  border-bottom-left-radius: 8px;
+  box-shadow: -4px 4px 0 0 var(--tab-color);
+}
+
+/* ── Body ── */
+.folder-body {
+  width: 100%;
+  height: var(--folder-height);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--folder-color) 22%, #1a2235) 0%,
+    color-mix(in srgb, var(--folder-color) 12%, #131826) 100%
+  );
+  border: 1px solid color-mix(in srgb, var(--folder-color) 35%, transparent);
+  border-radius: 2px 12px 4px 4px;
+  padding: 20px 18px 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.3) inset;
+  transition: box-shadow var(--transition-speed) var(--ease-out-quint);
+}
+
+.folder-card:hover .folder-body {
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.55),
+    0 24px 48px color-mix(in srgb, var(--folder-color) 25%, transparent),
+    0 4px 64px rgba(0, 0, 0, 0.4),
+    0 1px 0 rgba(255, 255, 255, 0.08) inset;
+}
+
+/* ── Right edge — stacked paper illusion ── */
+.folder-body::before {
+  content: '';
+  position: absolute;
+  top: var(--edge-size);
+  right: calc(-1 * var(--edge-size));
+  width: var(--edge-size);
+  height: calc(100% - var(--edge-size));
+  background: var(--edge-color);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Bottom edge — stacked paper illusion ── */
+.folder-body::after {
+  content: '';
+  position: absolute;
+  bottom: calc(-1 * var(--edge-size));
+  left: var(--edge-size);
+  width: calc(100% - var(--edge-size));
+  height: var(--edge-size);
+  background: var(--edge-color);
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Inner glow accent strip ── */
+.folder-body .folder-accent-line {
+  position: absolute;
+  top: 0;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  border-radius: 0 0 2px 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--folder-color),
+    transparent
+  );
+  opacity: 0.7;
+}
+
+/* ── Title ── */
+.folder-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Description ── */
+.folder-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Tech badge row ── */
+.folder-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.folder-tag {
+  display: inline-block;
+  padding: 3px 9px;
+  background: color-mix(in srgb, var(--folder-color) 18%, rgba(0, 0, 0, 0.3));
+  border: 1px solid color-mix(in srgb, var(--folder-color) 30%, transparent);
+  color: color-mix(in srgb, var(--folder-color) 90%, #fff);
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  border-radius: 99px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* ── Action row ── */
+.folder-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.folder-action-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    transform 0.2s var(--ease-out-quint);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.folder-action-btn:hover {
+  background: color-mix(in srgb, var(--folder-color) 20%, transparent);
+  border-color: color-mix(in srgb, var(--folder-color) 50%, transparent);
+  color: var(--folder-color);
+  transform: translateY(-2px);
+}
+
+.folder-action-btn svg {
+  width: 15px;
+  height: 15px;
+}

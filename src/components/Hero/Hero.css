@@ -1,0 +1,241 @@
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  background-color: var(--bg-dark-1);
+}
+
+/* Perspective SVG Grid */
+.hero-grid-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60vh;
+  perspective: 600px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-grid {
+  transform-origin: center bottom;
+  transform: rotateX(60deg) scale(2);
+  /* The scrolling animation moves the pattern */
+}
+.hero-grid rect {
+  animation: scrollGrid 3s linear infinite;
+  stroke-dasharray: 50;
+}
+
+/* Particles */
+.particles-layer {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.particle-star {
+  position: absolute;
+  width: 1px; height: 1px;
+  background: #fff;
+  border-radius: 50%;
+  animation: starPulse linear infinite;
+}
+.particle-dust {
+  position: absolute;
+  width: 3px; height: 3px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  animation: dustDrift alternate infinite ease-in-out;
+  opacity: 0.6;
+}
+
+/* Ambient Text Left */
+.ambient-text {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: rgba(0, 245, 255, 0.3);
+  z-index: 3;
+}
+
+/* Clock Top Right */
+.live-clock {
+  position: absolute;
+  top: 100px;
+  right: 40px;
+  text-align: right;
+  z-index: 10;
+}
+.clock-label {
+  font-family: var(--font-heading);
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+.clock-time {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent-cyan);
+  letter-spacing: 0.15em;
+}
+
+/* Scroll Hint Bottom Right */
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 120px;
+  z-index: 10;
+}
+.scroll-text {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+  transform: rotate(90deg);
+  white-space: nowrap;
+}
+.scroll-line {
+  width: 1px;
+  background-color: var(--accent-cyan);
+  animation: scrollDrawLine 2s infinite var(--ease-in-out-cubic);
+}
+
+/* Main Content Center Right */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 20%; /* Push to center-right slightly */
+  margin-top: 10vh;
+}
+
+.hero-name-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  margin-bottom: 24px;
+}
+
+.name-line {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text-white);
+  line-height: 1;
+}
+
+.line-1 {
+  font-size: 56px;
+  animation: slideInLeftName 0.9s var(--ease-out-cubic) forwards;
+  opacity: 0;
+  transform: translateX(-50px);
+}
+.line-2 {
+  font-size: 72px;
+  animation: scaleUpName 0.9s 0.2s var(--ease-out-cubic) forwards;
+  opacity: 0;
+  transform: scale(0.6);
+  color: var(--accent-cyan);
+  text-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
+}
+.line-3 {
+  font-size: 48px;
+  animation: slideInRightName 0.9s 0.4s var(--ease-out-cubic) forwards;
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+@keyframes slideInLeftName { to { opacity: 1; transform: translateX(0); } }
+@keyframes scaleUpName { to { opacity: 1; transform: scale(1); } }
+@keyframes slideInRightName { to { opacity: 1; transform: translateX(0); } }
+
+/* Role Scramble */
+.hero-role {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--text-main);
+  letter-spacing: 0.1em;
+  margin-bottom: 32px;
+  height: 24px; /* Fix height to prevent jumping */
+}
+
+/* Badges */
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.hero-badge {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent-cyan);
+  background: rgba(0, 245, 255, 0.05);
+  border: 0.5px solid rgba(0, 245, 255, 0.4);
+  padding: 5px 16px;
+  border-radius: 999px;
+  opacity: 0;
+}
+.badge-1 { animation: fadeSlideUp 0.8s 0.6s forwards; }
+.badge-2 { animation: fadeSlideUp 0.8s 0.7s forwards; }
+.badge-3 { animation: fadeSlideUp 0.8s 0.8s forwards; }
+
+/* CTAs */
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s 1s forwards;
+}
+
+.btn {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  padding: 16px 32px;
+  border-radius: 4px;
+  transition: all 0.4s ease-out; /* The ease out handles the magnetic snap back */
+  display: inline-block;
+  cursor: none;
+}
+
+.btn-outline {
+  color: var(--accent-cyan);
+  border: 1px solid var(--accent-cyan);
+  background: transparent;
+}
+.btn-outline:hover {
+  background: var(--accent-cyan);
+  color: #000;
+}
+
+.btn-solid {
+  background: var(--accent-cyan);
+  color: #000;
+  border: 1px solid var(--accent-cyan);
+}
+.btn-solid:hover {
+  background: transparent;
+  color: var(--accent-cyan);
+}
+
+@media (max-width: 900px) {
+  .hero-content {
+    padding-left: 0;
+  }
+  .line-1 { font-size: 36px; }
+  .line-2 { font-size: 48px; }
+  .line-3 { font-size: 32px; }
+  .ambient-text, .live-clock, .hero-scroll { display: none; }
+  .hero-ctas { flex-direction: column; }
+}
