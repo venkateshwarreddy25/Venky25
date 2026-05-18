@@ -28,7 +28,12 @@ export default function Projects() {
             const meta = PROJECT_META[project.id];
 
             return (
-              <div key={project.id} className="project-stack-card" style={{ '--card-accent': meta.accent }}>
+              <div 
+                key={project.id} 
+                className="project-stack-card" 
+                style={{ '--card-accent': meta.accent, cursor: 'pointer' }}
+                onClick={() => window.open(project.githubUrl, '_blank')}
+              >
 
                 {/* Left Accent Panel */}
                 <div className="card-accent-panel">
